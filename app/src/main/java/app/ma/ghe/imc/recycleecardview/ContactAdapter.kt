@@ -7,14 +7,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ContactAdapter : RecyclerView.Adapter<ContactAdapter.ContactAdapterViewHolder>() {
+class ContactAdapter (var listener : ClickItemContactListener):
+    RecyclerView.Adapter<ContactAdapter.ContactAdapterViewHolder>() {
 //lista de contato<modelo da class>
     private val list : MutableList<Contact> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactAdapterViewHolder {
      //responsavel pelo layout de cada card
         val view = LayoutInflater.from(parent.context).inflate(R.layout.contact_item, parent, false)
-        return ContactAdapterViewHolder(view)
+        return ContactAdapterViewHolder(view,list,listener)
     }
 //metodo que é passado a cada item do rycleview
     override fun onBindViewHolder(holder: ContactAdapterViewHolder, position: Int) {
@@ -35,11 +36,18 @@ class ContactAdapter : RecyclerView.Adapter<ContactAdapter.ContactAdapterViewHol
         notifyDataSetChanged()
     }
 //responsavel por gerenciar cada item
-    class ContactAdapterViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+    class ContactAdapterViewHolder(itemView : View, var list : List<Contact>, var listener: ClickItemContactListener) :
+        RecyclerView.ViewHolder(itemView){
 
     private val tvName : TextView = itemView.findViewById(R.id.tv_nome)
     private val tvFone : TextView = itemView.findViewById(R.id.tv_fone)
     private val ivFoto : ImageView = itemView.findViewById(R.id.iv_foto)
+
+    init {
+        itemView.setOnClickListener{
+            listener.clickItemContact(list[adapterPosition])
+        }
+    }
 
     fun bind(contact: Contact){
             tvName.text = contact.nome

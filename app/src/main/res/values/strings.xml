@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">Contatos App</string>
-    <string name="menu_1">Menu 1</string>
-    <string name="menu_2">Menu 2</string>
+    <string name="nome">Nomoe Contato</string>
+    <string name="numero">Numero Contato</string>
+    <string name="foto">Foto Contato</string>
+    <string name="menu_1">Perfil</string>
+    <string name="menu_2">Configurações</string>
     <string name="open_drawer">Abrindo drawer</string>
     <string name="close_drawer">Fechando drawer</string>
+    <string name="nomeContato">Nome do contato</string>
+    <string name="numeroContato">(00)00000 0000</string>
 </resources>
