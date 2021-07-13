@@ -5,12 +5,16 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
-    private val rv_list : RecyclerView by lazy {
+    private val rvlist : RecyclerView by lazy {
         findViewById(R.id.rv_list)
     }
 
@@ -18,15 +22,28 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.drawer_menu)
 
+        initDrawer()
         bindViews()
         updateList()
     }
 
+    private fun initDrawer(){
+        val drawerLayouts = findViewById<View>(R.id.drawerLayout) as DrawerLayout
+        val toolbar = findViewById<Toolbar>(R.id.toolbars)
+        setSupportActionBar(toolbar)
+        //ação de abrir e fechar o drawer layout
+        val toggle = ActionBarDrawerToggle(this,drawerLayouts,toolbar,R.string.open_drawer,R.string.close_drawer)
+        drawerLayouts.addDrawerListener(toggle)
+        //iniciar a sincronização do toggle
+        toggle.syncState()
+
+    }
+
     private fun bindViews(){
-        rv_list.adapter = adapter
-        rv_list.layoutManager = LinearLayoutManager(this)
+        rvlist.adapter = adapter
+        rvlist.layoutManager = LinearLayoutManager(this)
     }
 
     private fun updateList(){

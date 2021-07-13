@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">RecycleECardView</string>
+    <string name="app_name">Contatos App</string>
     <string name="menu_1">Menu 1</string>
     <string name="menu_2">Menu 2</string>
+    <string name="open_drawer">Abrindo drawer</string>
+    <string name="close_drawer">Fechando drawer</string>
 </resources>
